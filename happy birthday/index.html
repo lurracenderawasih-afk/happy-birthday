@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card 💌</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background: white url("https://i.pinimg.com/originals/77/11/36/771136c5c86eeb40ce35bdae699deba0.gif") no-repeat center center fixed;
+            background-size: cover;
+
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h1,
+        h2,
+        p {
+            color: #ff80ab;
+
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+
+        }
+
+        button {
+            margin-top: 20px;
+            background: #ff80ab;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #f06292;
+        }
+
+        input {
+            width: 80%;
+            max-width: 200px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ff80ab;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .typing {
+            border-right: 3px solid #ff80ab;
+            display: inline-block;
+            white-space: pre-line;
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 90%;
+            /* biar fleksibel di HP */
+            height: auto;
+            margin: 15px auto;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <body>
+
+        <!-- Musik -->
+        <audio id="bgmusic" autoplay loop muted>
+            <source src="ssstik.io_1759583370588.mp3" type="audio/mp3">
+        </audio>
+
+        <script>
+            window.addEventListener("load", () => {
+                const bgm = document.getElementById("bgmusic");
+                bgm.muted = false; // buka mute setelah halaman terbuka
+                bgm.play().catch(err => {
+                    console.log("Autoplay dicegah, user harus klik dulu:", err);
+                });
+            });
+        </script>
+
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide1">
+            <img src="https://i.pinimg.com/originals/52/d8/d7/52d8d7d7dd20b858e02fd818ba06c53b.gif"
+                alt="Happy Birthday Gif" width="300">
+            <h2>Hihi, coba tebak passwordnya apa, i bet you know</h2>
+            <p>Clue: your birthday</p>
+            <input type="password" id="pin" maxlength="4" placeholder="****">
+            <button onclick="checkPin()">Submit</button>
+            <div class="message" id="pinMessage"></div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide2">
+            <img src="http://i.pinimg.com/originals/34/fb/56/34fb566e48a1dbdbd5c00f2b13f895be.gif" alt="Gif"
+                width="400">
+            <h2>Hai Maskuuu Sayanggg! 💌</h2>
+            <button onclick="nextSlide(3)">Tap disini</button>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide3">
+            <img src="https://i.pinimg.com/originals/c9/ef/9f/c9ef9fd548d0b8ffc4b009e81fc10b38.gif" alt="Gif"
+                width="400">
+
+            <h2>Are you ready to open this?</h2>
+            <button onclick="nextSlide(31)">Sure byy</button>
+            <button onclick="nextSlide(32)">Mmm no sowwy</button>
+        </div>
+
+        <!-- Slide 3.1 (Sure byy) -->
+        <div class="slide" id="slide31">
+            <img src="https://i.pinimg.com/originals/d1/4f/cb/d14fcba56cc60fc12af3f3feedd878ac.gif" alt="Birthday Gif"
+                width="400">
+            <p>Yeayyyyy terimakasi sudaa menjawab sure sayanggg!!</p>
+            <p>Last one i made something for u masss, read it slowly ywww...</p>
+            <button onclick="nextSlide(4)">Okeee sayanggg</button>
+        </div>
+
+        <!-- Slide 3.2 (No sowwy) -->
+        <div class="slide" id="slide32">
+            <img src="https://i.pinimg.com/originals/6d/8f/a6/6d8fa6e5a5b2af911d02cd1eb909a934.gif" alt="Birthday Gif"
+                width="400">
+            <p>ih iseng mulu, tap SURE BYY sekarang juga!</p>
+            <button onclick="nextSlide(3)">Back</button>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide4">
+            <img src="https://i.pinimg.com/originals/d0/af/dd/d0afddeff621d3b1486fa6b377cb079c.gif" alt="Gif"
+                width="400">
+            <h2>HAPPY BIRTHDAY MASKUU SAYANGGG 🎂</h2>
+            <p>Selamat bertumbuh lebih baik lagi yaaa, semoga sehat selalu dan bahagia selalu ya sayanggg...</p>
+            <p>Aku nulis sesuatu yang spesial banget buat kamu</p>
+            <button onclick="nextSlide(5)">Next</button>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="slide5">
+            <img src="https://i.pinimg.com/originals/1c/1f/8c/1c1f8cbe8478bacacd40de83f7e59787.gif" alt="Gif"
+                width="400">
+            <h2>A WISH FOR U ON UR BIRTHDAY</h2>
+            <p id="typing" class="typing"></p>
+        </div>
+
+        <script>
+            // Navigasi slide
+            function nextSlide(num) {
+                document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
+                document.getElementById("slide" + num).classList.add("active");
+
+                // typing effect di slide 5
+                if (num === 5) {
+                    typeText(`Hey love, happy sweet seventeen yaa 💖 Semoga hal-hal baik selalu menyertaimu. 
+                Semoga semesta membimbing langkahmu dan membuat semua mimpimu terasa lebih mudah tercapai.  
+                Apa pun yang kamu harapkan hari ini, semoga benar-benar menjadi nyata.  
+
+                Even when things don’t go your way, jangan pernah menyerah pada dirimu sendiri.  
+                Remember: kamu dicintai dan pantas untuk dirayakan, always. Aku bangga banget sama sejauh ini 
+                perjalananmu dan semua usaha yang udah kamu lakukan. Aku akan selalu ada untukmu, cukup dengan 
+                satu panggilan atau pesan saja. Rumah kita dekat, dan every day kita selalu ketemu di sekolah. 
+                So, even if I’m busy, kalau kamu butuh aku, I’m ready to be by your side. 💕`);
+                }
+            }
+
+            // Slide 1 - PIN check
+            function checkPin() {
+                const pin = document.getElementById("pin").value;
+                const message = document.getElementById("pinMessage");
+                if (pin === "0810") {
+                    message.style.color = "green";
+                    message.innerText = "Correct!";
+                    nextSlide(2);
+                } else {
+                    message.style.color = "red";
+                    message.innerText = "Wrong, coba lagi!";
+                }
+            }
+
+            // Typing effect
+            function typeText(text) {
+                const el = document.getElementById("typing");
+                el.innerHTML = "";
+                let i = 0;
+                function typing() {
+                    if (i < text.length) {
+                        el.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typing, 50);
+                    }
+                }
+                typing();
+            }
+        </script>
+
+    </body>
+
+</html>
